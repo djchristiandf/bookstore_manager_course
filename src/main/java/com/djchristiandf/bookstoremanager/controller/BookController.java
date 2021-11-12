@@ -4,10 +4,7 @@ import com.djchristiandf.bookstoremanager.dto.BookDTO;
 import com.djchristiandf.bookstoremanager.dto.MessageResponseDTO;
 import com.djchristiandf.bookstoremanager.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -25,5 +22,10 @@ public class BookController {
     @PostMapping
     public MessageResponseDTO create(@RequestBody @Valid BookDTO book){
         return bookService.create(book);
+    }
+
+    @GetMapping("/{id}")
+    public BookDTO findById(@PathVariable Long id){
+        return bookService.findById(id);
     }
 }
